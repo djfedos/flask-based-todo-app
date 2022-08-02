@@ -1,13 +1,13 @@
 from my_app import db
 from flask_login import UserMixin
 
-
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key = True)
     first_name = db.Column(db.String(255))
     last_name = db.Column(db.String(255))
     email = db.Column(db.String, unique = True)
     password = db.Column(db.String)
+    tasks = db.relationship('Task', backref='owner')
 
     def __repr__(self):
         return f'User{self.first_name}{self.email}'
@@ -24,4 +24,5 @@ class Task(db.Model):
         return f'Task{self.task_name}{self.due_date}'
 
 
-todos = db.relationship('TodoItem', backref='owner')
+# this operation isn't mentioned in tutorial but without this DB throws an error that there's no such table as user
+db.create_all()
