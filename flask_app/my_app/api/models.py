@@ -7,7 +7,7 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(255))
     email = db.Column(db.String, unique = True)
     password = db.Column(db.String)
-    tasks = db.relationship('TodoItem', backref='owner')
+    tasks = db.relationship('Task', backref='owner')
 
     def __repr__(self):
         return f'User{self.first_name}{self.email}'
@@ -22,3 +22,6 @@ class Task(db.Model):
 
     def __repr__(self):
         return f'Task{self.task_name}{self.due_date}'
+
+# this operation isn't mentioned in tutorial but without this DB throws an error that the user table doesn't exist
+db.create_all()
