@@ -23,5 +23,6 @@ class Task(db.Model):
     def __repr__(self):
         return f'Task{self.task_name}{self.due_date}'
 
-# this operation isn't mentioned in tutorial but without this DB throws an error that the user table doesn't exist
+
+# this operation isn't mentioned in tutorial but without this DB throws an error that there's no such table as user
 db.create_all()
