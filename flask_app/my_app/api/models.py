@@ -7,7 +7,7 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(255))
     email = db.Column(db.String, unique = True)
     password = db.Column(db.String)
-    todos = db.relationship('TodoItem', backref='owner')
+    tasks = db.relationship('TodoItem', backref='owner')
 
     def __repr__(self):
         return f'User{self.first_name}{self.email}'

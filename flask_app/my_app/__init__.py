@@ -26,3 +26,7 @@ from my_app.api.models import User
 @login_manager.user_loader
 def user_loader(user_id):
     return User.query.get(int(user_id))
+
+
+from  my_app.api.views import tasks
+app.register_blueprint(tasks)
