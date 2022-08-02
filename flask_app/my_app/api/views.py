@@ -7,14 +7,14 @@ from my_app.api.forms import RegisterForm
 tasks = Blueprint('tasks', __name__)
 
 
-@tasks.route('/register')
+@tasks.route('/register', methods = ['POST','GET'])
 def register():
     form = RegisterForm()
     if request.method == 'GET':
         return render_template('register.html', form=form)
 
     if request.method == 'POST':
-        if form.validate_on_submit():
+        if form.validate_on_submit:
             user = User(first_name =form.first_name.data,
                         last_name =form.last_name.data,
                         email =form.email.data,
