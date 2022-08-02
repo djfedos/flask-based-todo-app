@@ -8,7 +8,6 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydb.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 db = SQLAlchemy(app)
 
 
@@ -30,3 +29,5 @@ def user_loader(user_id):
 
 from  my_app.api.views import tasks
 app.register_blueprint(tasks)
+from my_app.api.models import db
+db.create_all()
