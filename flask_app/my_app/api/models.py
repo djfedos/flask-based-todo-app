@@ -1,8 +1,5 @@
-from flask_sqlalchemy import SQLAlchemy
+from my_app import db
 from flask_login import UserMixin
-from my_app import app
-
-db = SQLAlchemy(app)
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key = True)
@@ -10,6 +7,7 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(255))
     email = db.Column(db.String, unique = True)
     password = db.Column(db.String)
+    todos = db.relationship('TodoItem', backref='owner')
 
     def __repr__(self):
         return f'User{self.first_name}{self.email}'
@@ -24,6 +22,3 @@ class Task(db.Model):
 
     def __repr__(self):
         return f'Task{self.task_name}{self.due_date}'
-
-
-todos = db.relationship('TodoItem', backref='owner')
