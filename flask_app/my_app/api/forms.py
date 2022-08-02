@@ -23,3 +23,10 @@ class TodoForm(FlaskForm):
     status = SelectField('Status', choices=[('Complete', 'Complete'), ('Not Started', 'Not Started')])
     submit = SubmitField('Add Task')
 
+
+class EditTodoForm(FlaskForm):
+    task_name = StringField('Task Name', validators=[DataRequired()])
+    due_date = DateField('Due Date', validators=[DataRequired()])
+    status = SelectField('Status', choices=[('Complete', 'Complete'), ('Not Started', 'Not Started')])
+    submit = SubmitField('Edit Task')
+

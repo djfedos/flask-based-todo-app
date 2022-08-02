@@ -2,7 +2,7 @@ from flask import flash, redirect, render_template, request, jsonify, Blueprint,
 from werkzeug.security import generate_password_hash, check_password_hash
 from my_app import db
 from my_app.api.models import User, Task
-from my_app.api.forms import RegisterForm, LoginForm, TodoForm
+from my_app.api.forms import RegisterForm, LoginForm, TodoForm, EditTodoForm
 from flask_login import login_user, logout_user, current_user
 
 tasks = Blueprint('tasks', __name__)
@@ -33,7 +33,7 @@ def login():
         user = User.query.filter_by(email = form.email.data).first()
         if user and check_password_hash(user.password, form.password.data):
             login_user(user)
-            return redirect('/tasks')
+            return redirect('/todos')
         flash("Invalid details")
 
     return render_template('login.html', form=form)
@@ -58,5 +58,33 @@ def add_todo():
                         )
             db.session.add(todo)
             db.session.commit()
-            return redirect('/tasks')
+            return redirect('/todos')
+
+
+@tasks.route('/todos')
+def todos():
+    todos = Task.query.filter_by(todo_owner=current_user.id)
+    return render_template('todos.html', todos = todos)
+
+
+@tasks.route('/edit_task/<int:id>', methods=['POST', 'GET'])
+def edit_task(id):
+    user = current_user
+    form = EditTodoForm()
+    task = Task.query.filter_by(id=id, todo_owner=user.id).first()
+
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            task.task_name = form.task_name.data
+            task.due_date = form.due_date.data
+            task.status = form.status.data
+            db.session.commit()
+            return redirect('/todos')
+
+    elif request.method == 'GET':
+        form.task_name.data = task.task_name
+        form.due_date.data = task.due_date
+        form.status.data = task.status
+    return render_template('edit_todo.html', form=form)
+
 
