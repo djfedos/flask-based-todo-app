@@ -10,3 +10,8 @@ tasks:
     cmds:
       - echo "{{.GREETING}}"
     silent: true
+
+  run-server:
+    desc: fire it up!
+    cmds:
+      - python flask_app/run.py
