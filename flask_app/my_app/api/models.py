@@ -2,11 +2,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from my_app import app
 
-<<<<<<< HEAD
-=======
 db = SQLAlchemy(app)
 
->>>>>>> Followin the tutorial further
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key = True)
     first_name = db.Column(db.String(255))
