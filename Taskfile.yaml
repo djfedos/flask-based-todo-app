@@ -20,3 +20,10 @@ tasks:
     desc: _
     cmds:
       - pytest tests/test_flask_based_todo_app.pys
+
+  build-docker:
+    desc: _
+    cmds:
+     - docker build -t flask-todo-app .
+
+  
