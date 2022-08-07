@@ -3,7 +3,7 @@
 version: '3'
 
 vars:
-  GREETING: Hello, World!
+  GREETING: To test the app, run-server, then test-web-app. Don't forget to stop the server afterwards
 
 tasks:
   default:
@@ -15,3 +15,8 @@ tasks:
     desc: fire it up!
     cmds:
       - python flask_app/run.py
+
+  test-web-app:
+    desc: _
+    cmds:
+      - pytest tests/test_flask_based_todo_app.pys
