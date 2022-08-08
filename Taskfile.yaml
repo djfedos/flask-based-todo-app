@@ -21,6 +21,10 @@ tasks:
     cmds:
       - pytest tests/test_flask_based_todo_app.py
 
+  install-docker:
+    desc: _
+    cmds:
+     - task -t taskfiles/setup.os.docker.yaml install-docker
 
   build-docker:
     desc: _

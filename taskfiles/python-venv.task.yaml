@@ -10,3 +10,8 @@ tasks:
     cmds:
       - echo "{{.GREETING}}"
     silent: true
+
+  venv-activate:
+    desc: _
+    cmds:
+      - source venv/bin/activate

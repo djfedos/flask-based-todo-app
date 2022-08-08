@@ -1,0 +1,25 @@
+name: test-docker
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          
+      - name: Install Task
+        uses: arduino/setup-task@v1
+
+      - run: 'task install-docker'
+        name: 'Install Docker'
+      
+      - run: 'task test-docker'
+        name: 'Test app in docker container'
