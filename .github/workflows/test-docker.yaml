@@ -18,18 +18,13 @@ jobs:
       - name: Install Task
         uses: arduino/setup-task@v1
 
-      - name: 'Install Docker'
-        run: 'task install-docker'
-
       - name: Set up Python 3.9
         uses: actions/setup-python@v3
         with:
           python-version: "3.9"
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pytest requests
+      - name: Resolve dependencies
+        run: task resolve-deps
 
       - name: 'Test app in docker container'
         run: 'task test-docker'
