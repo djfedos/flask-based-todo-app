@@ -20,6 +20,16 @@ jobs:
 
       - run: 'task install-docker'
         name: 'Install Docker'
-      
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.9"
+
+       - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest requests
+
       - run: 'task test-docker'
         name: 'Test app in docker container'
