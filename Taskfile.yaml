@@ -32,6 +32,31 @@ tasks:
     cmds:
       - docker run -d -p 127.0.0.1:5000:5000 --name flask-todo flask-todo-app
 
+  test-docker:
+    desc: Test if container builds and server an app
+    cmds:
+      - task build-docker
+      - task run-docker
+      - sleep 10
+      - task test-web-app
+      - task clean-up-docker
+
+  remove-docker-container:
+    desc: _
+    cmds:
+      - docker stop flask-todo
+      - docker container rm flask-todo  
+  
+  remove-docker-image:
+    desc: _
+    cmds:
+      - docker image rm -f flask-todo-app
+      
+  clean-up-docker:
+    desc: remove docker container and image, for instance after the test
+    cmds:
+     - task remove-docker-container
+     - task remove-docker-image
 
   
   
