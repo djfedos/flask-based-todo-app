@@ -4,10 +4,7 @@ WORKDIR /usr/src/app
 
 COPY flask_app flask_app
 RUN ["/bin/bash", "-c", "python -m venv venv"]
-RUN ["/bin/bash", "-c", "source venv/bin/activate"]
-RUN ["/bin/bash", "-c", "pip install --upgrade pip"]
-RUN ["/bin/bash", "-c", "pip install flask"]
-RUN ["/bin/bash", "-c", "pip install flask_sqlalchemy"]
-RUN ["/bin/bash", "-c", "pip install flask_login"]
+RUN ["/bin/bash", "-c", "source venv/bin/activate && pip install flask flask_sqlalchemy flask_login flask_wtf"]
 
-CMD python flask_app/run.py
+
+CMD ["/bin/bash", "-c", "source venv/bin/activate && python flask_app/run.py"]

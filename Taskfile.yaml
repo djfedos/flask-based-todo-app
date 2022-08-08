@@ -19,11 +19,19 @@ tasks:
   test-web-app:
     desc: _
     cmds:
-      - pytest tests/test_flask_based_todo_app.pys
+      - pytest tests/test_flask_based_todo_app.py
+
 
   build-docker:
     desc: _
     cmds:
      - docker build -t flask-todo-app .
 
+  run-docker:
+    desc: _
+    cmds:
+      - docker run -d -p 127.0.0.1:5000:5000 --name flask-todo flask-todo-app
+
+
+  
   
