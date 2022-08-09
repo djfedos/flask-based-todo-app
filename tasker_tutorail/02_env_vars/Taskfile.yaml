@@ -1,0 +1,69 @@
+# # https://taskfile.dev
+# When doing interpolation of variables, Task will look for the below. They are listed below in order of importance (i.e. most important first):
+
+# Variables declared in the task definition
+# Variables given while calling a task from another (See Calling another task above)
+# Variables of the included Taskfile (when the task is included)
+# Variables of the inclusion of the Taskfile (when the task is included)
+# Global variables (those declared in the vars: option in the Taskfile)
+# Environment variables
+
+
+
+
+version: '3'
+
+vars:
+  GREETING: Here we play with variables
+
+dotenv: ['.env']
+
+tasks:
+  default:
+    cmds:
+      # here we use a global variable, declared in line 16 of this file
+      - echo "{{.GREETING}}"
+      - task -a
+    silent: true
+
+  greet-env:
+    # global variable and enviroment variable do not fight
+    cmds:
+      - echo "{{.GREETING}}"
+      - echo $GREETING
+    env:
+      GREETING: Hello, dear user! Here is the environment variable, it doesn't override the global task variable
+
+  greet-var:
+    # local variable overrides the global one
+    cmds:
+      - echo "{{.GREETING}}"
+    vars:
+      GREETING: Hello, dear user! Note that the local greeting overrides the global one
+
+
+  greet-call-task:
+    cmds:
+      - task greet-env
+      - task greet-var
+
+  greet-call-task-override:
+    cmds:
+      - task greet-var
+    vars:
+      GREETING: This will be overriden by the variable from task greet-var
+  
+
+  # Environment variables from .env file
+  # Try calling this task like this: REQUEST=Kazakhstan task grep-dataset-env
+  grep-dataset-env:
+    cmds:
+      - cat $DATASET_PATH | grep $REQUEST
+
+  # Environment variables from .env file and in task definition
+  # Try calling this task like this: REQUEST=Kyrgyzstan task grep-dataset-japan
+  grep-dataset-japan:
+    cmds:
+      - cat $DATASET_PATH | grep $REQUEST
+    env:
+      REQUEST: Japan  
