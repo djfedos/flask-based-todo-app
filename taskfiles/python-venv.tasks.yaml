@@ -1,8 +1,15 @@
-# this file is a copy from YD's project, so it's to be tailored for this project
+# https://taskfile.dev
 
 version: '3'
 
+vars:
+  GREETING: Hello, World!
+
 tasks:
+  default:
+    cmds:
+      - echo "{{.GREETING}}"
+    silent: true
 
   resolve-venv:
     desc: resolve venv with conda. required-arg=VENV_NAME
@@ -10,22 +17,23 @@ tasks:
     - sh: "[[ '{{.VENV_NAME}}' != '' ]]"
       msg: required argument is not provided .@@dict arg_name=VENV_NAME
     status:
-    - conda run -n '{{.VENV_NAME}}' python --version
+    - test -d ../{{.VENV_NAME}}
     cmds:
-    - conda create -y -n '{{.VENV_NAME}}' python=3.9 pip
+    - python -m venv {{.VENV_NAME}} python=3.9 pip
 
   delete-venv:
     desc: resolve venv with conda. required-arg=VENV_NAME
     preconditions: *ref_require_venv
     cmds:
-    - conda env remove -n '{{.VENV_NAME}}'
+    - deactivate
+    - rm -r ../{{.VENV_NAME}}
 
   show-activate:
     desc: show activation command
     preconditions: *ref_require_venv
     silent: true
     cmds:
-    - echo 'conda activate {{.VENV_NAME}}'
+    - echo "source {{.VENV_NAME}}/bin/activate"
     
   shell:
     desc: enter venv shell
@@ -34,12 +42,12 @@ tasks:
     cmds:
     - |-
       echo 'To activate conda shell, type:'
-      echo "conda activate '{{.VENV_NAME}}'"
+      echo "source {{.VENV_NAME}}/bin/activate"
 
   run-in-venv:
-    desc: run provided command in vevnv, use suffix '-- THE_COMMAND_LINE'
+    desc: run provided command in venv, use suffix '-- THE_COMMAND_LINE'
     preconditions: *ref_require_venv
     silent: true
     cmds:
     - |-
-      conda run -n '{{.VENV_NAME}}' {{.CLI_ARGS}}
+      ../'{{.VENV_NAME}}'/bin/python {{.CLI_ARGS}}

@@ -2,13 +2,19 @@
 
 version: '3'
 
+includes:
+  conda: taskfiles/conda-venv.tasks.yaml
+  py-venv: taskfiles/python-venv.tasks.yaml
+
 vars:
   GREETING: To test the app, run-server, then test-web-app. Don't forget to stop the server afterwards
 
 tasks:
   default:
+    desc: List all tasks
     cmds:
       - echo "{{.GREETING}}"
+      - task -a
     silent: true
 
   resolve-deps:
@@ -29,7 +35,7 @@ tasks:
       - pytest tests/test_flask_based_todo_app.py
 
   install-docker:
-    desc: _
+    desc: install Docker engine
     cmds:
      - task -t taskfiles/setup.os.docker.yaml install-docker
 
