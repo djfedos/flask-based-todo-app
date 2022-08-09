@@ -17,16 +17,15 @@ tasks:
     - sh: "[[ '{{.VENV_NAME}}' != '' ]]"
       msg: required argument is not provided .@@dict arg_name=VENV_NAME
     status:
-    - test -d ../{{.VENV_NAME}}
+    - test -d {{.VENV_NAME}}
     cmds:
-    - python -m venv {{.VENV_NAME}} python=3.9 pip
+    - python3 -m venv {{.VENV_NAME}}
 
   delete-venv:
     desc: resolve venv with conda. required-arg=VENV_NAME
     preconditions: *ref_require_venv
     cmds:
-    - deactivate
-    - rm -r ../{{.VENV_NAME}}
+    - rm -r {{.VENV_NAME}}
 
   show-activate:
     desc: show activation command
@@ -41,8 +40,10 @@ tasks:
     silent: true
     cmds:
     - |-
-      echo 'To activate conda shell, type:'
+      echo 'To activate venv shell, type:'
       echo "source {{.VENV_NAME}}/bin/activate"
+      echo 'To deactivate venv, type:'
+      echo 'deactivate'
 
   run-in-venv:
     desc: run provided command in venv, use suffix '-- THE_COMMAND_LINE'
@@ -50,4 +51,4 @@ tasks:
     silent: true
     cmds:
     - |-
-      ../'{{.VENV_NAME}}'/bin/python {{.CLI_ARGS}}
+      {{.VENV_NAME}}/bin/python {{.CLI_ARGS}}
