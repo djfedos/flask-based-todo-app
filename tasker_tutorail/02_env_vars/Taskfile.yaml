@@ -8,10 +8,18 @@
 # Global variables (those declared in the vars: option in the Taskfile)
 # Environment variables
 
-
-
-
 version: '3'
+
+
+# Vars in included file do not work as expected. Why?
+includes:
+  grep-ds:
+    taskfile: grep-dataset.tasks.yaml
+
+  grep-ds-lvar:
+    taskfile: grep-dataset.tasks.yaml
+    vars:
+      REQUEST: Italy
 
 vars:
   GREETING: Here we play with variables
@@ -66,4 +74,4 @@ tasks:
     cmds:
       - cat $DATASET_PATH | grep $REQUEST
     env:
-      REQUEST: Japan  
+      REQUEST: Asia,Japan  

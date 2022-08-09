@@ -1,0 +1,17 @@
+version: '3'
+
+vars:
+  REQUEST: Germany
+  
+
+tasks:
+  it:
+    cmds:
+      - cat $DATASET_PATH | grep $REQUEST
+  
+  it-v:
+    cmds:
+      - cat $DATASET_PATH | grep $REQUEST
+    vars:
+      REQUEST: India
+
