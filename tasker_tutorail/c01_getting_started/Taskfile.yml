@@ -13,10 +13,10 @@ tasks:
       - task -a
     silent: true
 
-  greet:
-    desc: say hello
+  first-task:
+    desc: _
     cmds:
-      - echo "Hello!"
+      - echo "My first task runs fine"
   
   get-started:
     desc: _
@@ -28,5 +28,5 @@ tasks:
     desc: one task can call another tasks, like this one does
     cmds:
       - task get-started
-      - task greet 
+      - task first-task
 
