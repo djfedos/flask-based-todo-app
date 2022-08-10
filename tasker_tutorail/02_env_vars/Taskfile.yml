@@ -10,16 +10,16 @@
 
 version: '3'
 
-
-# Vars in included file do not work as expected. Why?
+# Vars get pulled from included taskfiles
 includes:
-  grep-ds:
+  grep-dataset-product:
     taskfile: grep-dataset.tasks.yaml
 
-  grep-ds-lvar:
+  grep-dataset-meat:
     taskfile: grep-dataset.tasks.yaml
     vars:
-      REQUEST: Italy
+      # but we can override them like this:
+      REGION: Europe
 
 vars:
   GREETING: Here we play with variables

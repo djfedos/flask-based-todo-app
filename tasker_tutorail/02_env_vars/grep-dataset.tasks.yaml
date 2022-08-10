@@ -1,17 +1,25 @@
 version: '3'
 
 vars:
-  REQUEST: Germany
-  
+  PRODUCT: Cereal
 
 tasks:
-  it:
+  grep-product:
     cmds:
-      - cat $DATASET_PATH | grep $REQUEST
+      - cat $DATASET_PATH | grep {{.PRODUCT}} | grep Germany
   
-  it-v:
+  grep-another-product:
     cmds:
-      - cat $DATASET_PATH | grep $REQUEST
+      - cat $DATASET_PATH | grep {{.PRODUCT}} | grep Germany
     vars:
-      REQUEST: India
+      PRODUCT: Snacks
 
+  grep-by-region:
+    cmds:
+      - cat $DATASET_PATH | grep Meat | grep {{.REGION}}
+
+  dgb-show:
+    desc: _
+    cmds:
+      - echo REGION={{.REGION}}
+      - echo PRODUCT={{.PRODUCT}}
