@@ -6,7 +6,11 @@ includes:
   from-another-file:
     taskfile: greet.tasks.yaml
   from-subdir: ./greet_dir
-
+  # an optional include doesn't throw an error if the included file or directory is not found
+  from-nonexisting-file:
+    taskfile: taskfile.thats.not.there.yaml
+    # comment out the next line to see what will happen when you'll try to call any task
+    optional: true
 
 vars:
   GREETING: Here we include an external taskfile
@@ -18,4 +22,3 @@ tasks:
       - echo "{{.GREETING}}"
       - task -a
     silent: true
- 

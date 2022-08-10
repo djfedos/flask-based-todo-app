@@ -14,7 +14,7 @@ tasks:
     silent: true
 
   new-text-file:
-    desc: make a new text file inside a new directory. note thatthe subdirectory gets created if it doesn't yet exist
+    desc: make a new text file inside a new directory. note that the subdirectory gets created if it doesn't yet exist
     dir: temp 
     cmds:
       - echo "That's how task directories work" > thats_how.txt
