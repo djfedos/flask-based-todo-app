@@ -12,14 +12,14 @@ version: '3'
 
 # Vars get pulled from included taskfiles
 includes:
-  grep-dataset-product:
-    taskfile: grep-dataset.tasks.yaml
+  greet.tasks:
+    taskfile: greet.tasks.yaml
 
-  grep-dataset-meat:
-    taskfile: grep-dataset.tasks.yaml
+  greet.tasks.override:
+    taskfile: greet.tasks.yaml
     vars:
       # but we can override them like this:
-      REGION: Europe
+      INCLUSION_GREETING: Hi
 
 vars:
   GREETING: Here we play with variables
@@ -28,14 +28,14 @@ dotenv: ['.env']
 
 tasks:
   default:
+    desc: Here we use a global variable
     cmds:
-      # here we use a global variable, declared in line 16 of this file
       - echo "{{.GREETING}}"
       - task -a
     silent: true
 
   greet-env:
-    # global variable and enviroment variable do not fight
+    desc: global variable and enviroment variable do not fight, we can even use them together (not recommended though, it quickly gets complex)
     cmds:
       - echo "{{.GREETING}}"
       - echo $GREETING
@@ -43,7 +43,7 @@ tasks:
       GREETING: Hello, dear user! Here is the environment variable, it doesn't override the global task variable
 
   greet-var:
-    # local variable overrides the global one
+    desc: local variable overrides the global one
     cmds:
       - echo "{{.GREETING}}"
     vars:
@@ -51,27 +51,28 @@ tasks:
 
 
   greet-call-task:
+    desc: here we call other tasks not overriding any variables
     cmds:
       - task greet-env
       - task greet-var
 
   greet-call-task-override:
+    desc: here we call a task overriding its variable
     cmds:
       - task greet-var
     vars:
       GREETING: This will be overriden by the variable from task greet-var
   
-
-  # Environment variables from .env file
   # Try calling this task like this: REQUEST=Kazakhstan task grep-dataset-env
-  grep-dataset-env:
+  greet-dot-env:
+    desc: Getting environment variables from .env file
     cmds:
-      - cat $DATASET_PATH | grep $REQUEST
+      - echo $ENV_GREETING $FROM_WHERE
 
-  # Environment variables from .env file and in task definition
   # Try calling this task like this: REQUEST=Kyrgyzstan task grep-dataset-japan
-  grep-dataset-japan:
+  greet-dot-env-override:
+    desc: Getting environment variables from .env file. A variable from task definition overrides the one from .env file
     cmds:
-      - cat $DATASET_PATH | grep $REQUEST
+      - echo $ENV_GREETING $FROM_WHERE
     env:
-      REQUEST: Asia,Japan  
+      FROM_WHERE: from_task 

@@ -1,0 +1,12 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello from a subdirectory!
+
+tasks:
+  simple_greet:
+    desc: 'Call this task like this: task from-subdir:simple_greet'
+    cmds:
+      - echo {{.GREETING}}

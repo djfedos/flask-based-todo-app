@@ -1,0 +1,10 @@
+version: '3'
+
+vars:
+  GREETING: Hi from included file
+
+tasks:
+  simple_greet:
+    desc: 'Call this task like this: task from-another-file:simple_greet'
+    cmds:
+      - echo {{.GREETING}}

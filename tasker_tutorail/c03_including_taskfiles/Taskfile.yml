@@ -1,0 +1,21 @@
+# # https://taskfile.dev
+
+version: '3'
+
+includes:
+  from-another-file:
+    taskfile: greet.tasks.yaml
+  from-subdir: ./greet_dir
+
+
+vars:
+  GREETING: Here we include an external taskfile
+
+tasks:
+  default:
+    desc: See, there's only one default task in this file. But you can call 'from-another-file:simple_greet' task
+    cmds:
+      - echo "{{.GREETING}}"
+      - task -a
+    silent: true
+ 
