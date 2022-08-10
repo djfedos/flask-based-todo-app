@@ -1,0 +1,26 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Taskfiles support variables. For instance, GREETING is a variable and this string is its values 
+
+tasks:
+  default:
+    cmds:
+      - echo "{{.GREETING}}"
+      - task -a
+    silent: true
+
+  greet-global:
+    desc: run this task to print the global GREETING variable declared in the beginig of the file
+    cmds:
+      - echo {{.GREETING}}
+
+  greet-local:
+    desc: run this task to print the local GREETING variable declared inside the task itself
+    vars:
+      GREETING: Hi! This string is the value of a local variable, that overrides the global one
+    cmds:
+      - echo {{.GREETING}}
+    

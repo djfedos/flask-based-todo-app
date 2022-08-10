@@ -1,0 +1,39 @@
+# # https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Here we explore using enviroment variables in tasks
+
+tasks:
+  default:
+    cmds:
+      - echo "{{.GREETING}}"
+      - task -a
+    silent: true
+
+  greet-env:
+    desc: here we declare an enviroment variable right here in task
+    cmds:
+      - echo $GREETING
+    env:
+      GREETING: Hello, dear user! Here is the environment variable
+
+  greet-env-and-var:
+    desc: global variable and enviroment variable do not fight, but p l e a s e don't give them the same names to avoid confusion
+    cmds:
+      - echo "{{.GREETING}}"
+      - echo $GREETING
+    env:
+      GREETING: Hello, dear user! Here is the environment variable, it doesn't override the global task variable
+
+  shell-name:
+    desc: In this task we use an enviroment variable that already exists in our system
+    cmds:
+      - echo $SHELL
+
+  shell-name-as-var:
+    # be careful with this syntax. see variable priority chapter to know why
+    desc: In this task we call a variable that we haven't declader anywhere, but it already exists in our system as an enviroment variable.
+    cmds:
+      - echo {{.SHELL}}
