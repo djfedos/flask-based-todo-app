@@ -35,8 +35,6 @@ This task should also work in the same subdirectory.
 Add it to the Taskfile and try it out:  
 `task read-text`
 
-By the way if the directory doesn't exist this task will fail to run.
-
 After you have tried tasks with specified working directories it's time  
 to clean up our workshop. Let's create a task for this.  
 This time will work in the same directory where the Taskfile is, so there's  
@@ -51,4 +49,4 @@ no need to specify the directory.
 
 Now you can run `task cleanup` and start over any time you want.
 
-[Next chapter](../c03_including_taskfiles/README.md)
+## [Next chapter](../c03_including_taskfiles/README.md)
