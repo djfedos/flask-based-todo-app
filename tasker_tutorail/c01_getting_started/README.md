@@ -95,4 +95,3 @@ but **it's not recommended**. It will work in simple situations when all the
 tasks are in one Taskfile in your working directory and no environment  
 variables are involved. But in more complex setups it lead to confusion,  
 so please consider using the native `task: taskname` method.
-

@@ -27,6 +27,6 @@ tasks:
   calling-tasks:
     desc: one task can call another tasks, like this one does
     cmds:
-      - task get-started
-      - task first-task
+      - task: get-started
+      - task: first-task
 
