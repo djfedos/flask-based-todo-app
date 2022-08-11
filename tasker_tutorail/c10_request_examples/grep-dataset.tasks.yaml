@@ -6,17 +6,17 @@ vars:
 tasks:
   grep-product:
     cmds:
-      - cat $DATASET_PATH | grep {{.PRODUCT}} | grep Germany
+      - cat ${DATASET_PATH} | grep {{.PRODUCT}} | grep Germany
   
   grep-another-product:
     cmds:
-      - cat $DATASET_PATH | grep {{.PRODUCT}} | grep Germany
+      - cat {$DATASET_PATH} | grep {{.PRODUCT}} | grep Germany
     vars:
       PRODUCT: Snacks
 
   grep-by-region:
     cmds:
-      - cat $DATASET_PATH | grep Meat | grep {{.REGION}}
+      - cat ${DATASET_PATH} | grep Meat | grep {{.REGION}}
 
   dgb-show:
     desc: _

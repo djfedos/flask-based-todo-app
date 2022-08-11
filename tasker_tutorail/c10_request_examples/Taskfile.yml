@@ -24,8 +24,6 @@ includes:
 vars:
   GREETING: Here we play with variables
 
-dotenv: ['.env']
-
 tasks:
   default:
     cmds:
@@ -40,16 +38,13 @@ tasks:
       - wget https://eforexcel.com/wp/wp-content/uploads/2017/07/10000-Sales-Records.zip
       - unzip 10000-Sales-Records.zip
 
-  # Environment variables from .env file
-  # Try calling this task like this: REQUEST=Kazakhstan task grep-dataset-env
-  grep-dataset-env:
-    cmds:
-      - cat $DATASET_PATH | grep $REQUEST
 
-  # Environment variables from .env file and in task definition
+
+  # Environment variables from task definition
   # Try calling this task like this: REQUEST=Kyrgyzstan task grep-dataset-japan
   grep-dataset-japan:
     cmds:
-      - cat $DATASET_PATH | grep $REQUEST
+      - cat ${DATASET_PATH} | grep ${REQUEST}
     env:
-      REQUEST: Asia,Japan  
+      REQUEST: Asia,Japan
+      ATASET_PATH: 10000-Sales-Records.csv
