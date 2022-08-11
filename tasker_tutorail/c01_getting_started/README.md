@@ -4,6 +4,9 @@
 
 [Here is the Taskfile](Taskfile.yml) to follow along.
 
+> I recommend to create an empty working directory for each chapter of this  
+> tutorial.
+
 First install Tasker according to [the instructions](https://taskfile.dev/installation) 
 from the official site. I use [the Install Script](https://taskfile.dev/installation/#install-script)  
 and it works just fine.
@@ -97,11 +100,11 @@ Voila! Now we can chain tasks and combine them to fit our needs.
 Note:
 
 > You can use shell commands in task to call another task, like this:  
-`- task taskname`  
-but **it's not recommended**. It will work in simple situations when all the  
-tasks are in one Taskfile in your working directory and no environment  
-variables are involved. But in more complex setups it lead to confusion,  
-so please consider using the native `task: taskname` method.
+> `- task taskname`  
+> but **it's not recommended**. It will work in simple situations when all the  
+> tasks are in one Taskfile in your working directory and no environment  
+> variables are involved. But in more complex setups it lead to confusion,  
+> so please consider using the native `task: taskname` method.
 
 Even with this basic toolset Tasker can make life much easier.  
 But there's much more to it, as you'll see.

@@ -4,6 +4,9 @@
 
 [Here is the Taskfile](Taskfile.yml) to follow along.
 
+> I recommend to create an empty working directory for each chapter of this  
+> tutorial.
+
 By default the task runs in the same dircetory where the Taskfile is located,  
 but for any task you can specify the dircetory where to run it:  
 `dir: path`

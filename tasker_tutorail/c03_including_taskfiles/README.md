@@ -4,6 +4,9 @@
 
 [Here is the Taskfile](Taskfile.yml) to follow along.
 
+> I recommend to create an empty working directory for each chapter of this  
+> tutorial.
+
 Until now we only tried to run the tasks that are in the Taskfile.yaml in our  
 working directory. In many cases it's enough, but there is an option  
 to include external taskfiles to the main one.
