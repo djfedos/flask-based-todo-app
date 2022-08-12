@@ -60,6 +60,20 @@ tasks:
 Now try running `task first-task`. It should execute the command that you have  
 written in `cmds` section.
 
+By the way:
+> You can print out the list of all tasks with `task -a` command.  
+> It's a good practice to add this command to the default task,  
+> so you can call it simply typing `task`.
+
+```
+tasks:
+  default:
+    cmds:
+      - echo "{{.GREETING}}"
+      - task -a
+    silent: true
+```
+
 So far so good. Now let's add the description to our task. First it's a good  
 practice to know what the task's doing. Also, even if the task is self-explanatory,  
 a description allows Tasker shell completion to work. For simple tasks like this  

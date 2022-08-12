@@ -9,6 +9,7 @@ tasks:
   default:
     cmds:
       - echo "{{.GREETING}}"
+      - task -a
     silent: true
 
   greet-global:
