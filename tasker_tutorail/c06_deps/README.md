@@ -4,8 +4,7 @@
 
 [Here is the Taskfile](Taskfile.yml) to follow along.
 
-> I recommend to create an empty working directory for each chapter of this  
-> tutorial.
+> Open the working directory in terminal (I suggest you to use `./working_dir`)
 
 Here's an important thing:  
 **Dependencies in Tasker is the easy way to do tasks in parallel.**

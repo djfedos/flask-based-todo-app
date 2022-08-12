@@ -4,8 +4,7 @@
 
 [Here is the Taskfile](Taskfile.yml) to follow along.
 
-> I recommend to create an empty working directory for each chapter of this  
-> tutorial.
+> Open the working directory in terminal (I suggest you to use `./working_dir`)
 
 As you may already notice, tasks can make use of variables. For example,  
 let's create an initial taskfile in our working directory: `task --init`.

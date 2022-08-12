@@ -4,8 +4,7 @@
 
 [Here is the Taskfile](Taskfile.yml) to follow along.
 
-> I recommend to create an empty working directory for each chapter of this  
-> tutorial.
+> Open the working directory in terminal (I suggest you to use `./working_dir`)
 
 Until now we only tried to run the tasks that are in the Taskfile.yaml in our  
 working directory. In many cases it's enough, but there is an option  
