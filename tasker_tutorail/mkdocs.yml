@@ -136,8 +136,9 @@ nav:
   - index.md
   # - vars/README.md
   # - get-started.md
-  - Tutorial:
-    - ...
+  - ...
+  # - Tutorial:
+    # - ...
 
   # - release_notes.md
   # - ... | **/*__release_notes.md
