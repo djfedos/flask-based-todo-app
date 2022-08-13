@@ -1,9 +1,9 @@
-# Tasker Quick Start Tutorial
+# c04 Variables Basic
 
 *[Variables](https://taskfile.dev/usage/#variables) 
 in official documentation*
 
-## Variables
+## 
 
 [Here is the Taskfile](Taskfile.yml) to follow along.
 

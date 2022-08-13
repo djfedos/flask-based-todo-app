@@ -1,9 +1,9 @@
-# Tasker Quick Start Tutorial
+# c01 Getting started
 
 *[Getting Started](https://taskfile.dev/usage/#getting-started) 
 and [How to Call One Task from Another](https://taskfile.dev/usage/#calling-another-task) in official documentation*
 
-## Getting started
+## Intro
 
 [Here is the Taskfile](Taskfile.yml) to follow along.
 

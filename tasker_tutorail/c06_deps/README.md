@@ -1,9 +1,9 @@
-# Tasker Quick Start Tutorial
+# c06 Dependencies - Run Tasks in Parallel
 
 *[Dependencies](https://taskfile.dev/usage/#task-dependencies) 
 in official documentation*
 
-## Dependencies - Run Tasks in Parallel
+## Dependencies - Intro
 
 [Here is the Taskfile](Taskfile.yml) to follow along.
 

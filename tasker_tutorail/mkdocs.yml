@@ -57,6 +57,8 @@ plugins:
       # to change all pages partial settings:
       #   find -name '.pages' | xargs -I% bash -c 'mv % $(dirname %)/.mkdocs.pages.yaml'
       filename: .mkdocs.pages.yaml
+      collapse_single_pages: true
+
   # ref-uri: https://github.com/fralau/mkdocs-mermaid2-plugin/issues/10
   # - macros:
   #     include_dir: docs
@@ -131,10 +133,11 @@ extra_javascript:
   -  https://unpkg.com/mermaid@8.9.0/dist/mermaid.min.js # for mermaid graphs
 
 nav:
-  - README.md
+  - index.md
   # - vars/README.md
   # - get-started.md
-  - ...
+  - Tutorial:
+    - ...
 
   # - release_notes.md
   # - ... | **/*__release_notes.md

@@ -1,8 +1,8 @@
-# Tasker Quick Start Tutorial
+# c02 Task Directory
 
 *[Task Directory](https://taskfile.dev/usage/#task-directory) in official documentation*
 
-## Task Directory
+## Task Directory. Intro
 
 [Here is the Taskfile](Taskfile.yml) to follow along.
 
