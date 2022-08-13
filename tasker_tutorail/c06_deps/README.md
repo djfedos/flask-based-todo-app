@@ -12,7 +12,7 @@ in official documentation*
 Here's an important thing:  
 **Dependencies in Tasker is the easy way to do tasks in parallel.**
 
-It's convenient in order to speed up tasks. At the same time it add a limitation:  
+It's convenient in order to speed up tasks. At the same time it adds a limitation:  
 dependencies shouldn't depend on each other.
 
 Let's run something in parallel. Create a new taskfile: `task --init`. Open it  
