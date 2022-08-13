@@ -1,0 +1,26 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  default:
+    cmds:
+      - echo "{{.GREETING}}"
+    silent: true
+
+  test-tut-c01-getting-started--basic-test:
+    desc: run tests on getting-started-tut
+    cmds:
+    - echo ".@@act=init step=tests.task-list"
+    - task -d ../c01_getting_started -l | grep get-started
+    - task -d ../c01_getting_started -l | grep first-task
+    - task -d ../c01_getting_started -l | grep calling-tasks
+    - echo ".@@act=over step=tests.task.list"
+
+    - echo ".@@act=init step=tests.main-task"
+    - task -o prefixed -d ../c01_getting_started calling-tasks | grep '\[get-started\]'
+    - echo ".@@act=over step=tests.main-task"
+
