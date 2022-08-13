@@ -1,0 +1,25 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+  TASK_LIST:
+    sh: task -l
+
+tasks:
+  default:
+    cmds:
+      - echo "{{.TASK_LIST}}"
+    silent: true
+
+  spin-up:
+    desc: spin up opensearch ring
+    cmds:
+    - docker-compose up
+
+  spin-down:
+    desc: _
+    cmds:
+    - docker-compose up
+
