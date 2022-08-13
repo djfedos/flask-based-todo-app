@@ -30,3 +30,8 @@ tasks:
       - task: get-started
       - task: first-task
 
+  ci-flow:
+    desc: contains main path to evaluate all tasks
+    cmds:
+    - task calling-tasks
+

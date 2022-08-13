@@ -24,3 +24,18 @@ tasks:
     - task -o prefixed -d ../c01_getting_started calling-tasks | grep '\[get-started\]'
     - echo ".@@act=over step=tests.main-task"
 
+
+  test-validate-tutorial:
+    desc: validate single tutorial
+    cmds:
+    -  task -d ../{{.TUT_NAME}} ci-flow
+    
+
+  test-all-tutorials-ci-flow:
+    desc: run ci-flow on each tutorial
+    cmds:
+    -  task: test-validate-tutorial
+       vars: { TUT_NAME: "c01_getting_started" }
+    -  task: test-validate-tutorial
+       vars: { TUT_NAME: "c02_task_directory" }
+

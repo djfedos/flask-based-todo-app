@@ -5,8 +5,8 @@ version: '3'
 
 vars:
   GREETING: |-
-    'By default the task runs in the same dircetory where the Taskfile is located,
-    but for any task you can specify a dircetory where to run it.'
+    By default the task runs in the same dircetory where the Taskfile is located,
+    but for any task you can specify a dircetory where to run it.
 
 tasks:
   default:
@@ -17,17 +17,27 @@ tasks:
 
   new-text-file:
     desc: make a new text file inside a new directory
-    dir: temp 
+    dir: __temp 
     cmds:
       - echo "That's how task directories work" > thats_how.txt
 
   read-text:
     desc: read the text file from a subdirectory
-    dir: temp
+    dir: __temp
     cmds:
       - cat thats_how.txt 
 
   cleanup:
     desc: remove a subdirectory so you can start from scratch
     cmds:
-      - rm -r temp
+      - rm -r __temp
+
+  ci-flow:
+    desc: run tutorial sequence
+    cmds:
+    - task new-text-file
+    - task read-text
+    - ls -lh __temp | grep thats_how
+    - task cleanup
+    - ls -la . | grep -v __temp
+
