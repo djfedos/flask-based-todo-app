@@ -42,4 +42,4 @@ tasks:
     silent: true
     cmds:
     - |-
-      conda run -n '{{.VENV_NAME}}' {{.CLI_ARGS}}
+      conda run --no-capture-output -n '{{.VENV_NAME}}' {{.CLI_ARGS}}

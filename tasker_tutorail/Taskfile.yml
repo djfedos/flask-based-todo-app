@@ -1,0 +1,31 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+  PROJ_VENV_NAME: tasker_tutorial
+
+includes:
+  venv-resolver:
+    taskfile: ../taskfiles/conda-venv.tasks.yaml
+    vars:
+      VENV_NAME: '{{.PROJ_VENV_NAME}}'
+  docs-builder: ../taskfiles/mkdocs-basic-pack/mkdocs-build-basic.tasks.yml
+  # docs-publisher: taskfiles/mkdocs-basic-pack/mkdocs-publish.tasks.yml
+  # mkdocs: taskfiles/mkdocs-basic-pack/mkdocs.tasks.yml
+
+tasks:
+  
+  default:
+    cmds:
+      - echo "$(task -l)"
+    silent: true
+
+  resolve-devenv:
+    desc: resolve dev environment
+    cmds:
+    - task venv-resolver:resolve-venv
+    - task venv-resolver:run-in-venv -- task docs-builder:install-pip-deps
+
+

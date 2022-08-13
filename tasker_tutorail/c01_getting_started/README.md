@@ -18,7 +18,7 @@ To create a new taskfile in the directory run a command:
 A new file, Taskfile.yaml, will appear. Open this file in any text editor.  
 It content will look like this:
 
-```yaml
+```toml
 # https://taskfile.dev
 
 version: '3'
