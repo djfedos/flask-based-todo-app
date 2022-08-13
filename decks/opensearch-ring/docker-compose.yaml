@@ -1,3 +1,5 @@
+# from-url.original.doc=https://opensearch.org/docs/latest/opensearch/install/docker/
+
 version: '3'
 services:
   opensearch-node1:
