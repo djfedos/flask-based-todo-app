@@ -74,6 +74,6 @@ readable, but for list of dependencies it's fine, as it consists of short words.
 There's another important thing about dependencies: they run **before** the  
 commands of the task that depend on them.
 
-Don't remove the datasets from this task. We'll use them in further chapters!
+By the way, we will return to those datasets in further chapters.
 
 ## Next chapter
