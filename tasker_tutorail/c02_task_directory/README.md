@@ -15,7 +15,7 @@ but for any task you can specify the dircetory where to run it:
 Let's create an empty taskfile in our working directory (`task --init`) and  
 add a new task to it.
 
-```
+```yaml
   new-text-file:
     desc: make a new text file inside a new directory
     dir: temp 
@@ -28,7 +28,8 @@ Note that the subdirectory gets created if it doesn't yet exist.
 
 The next task will output the content of the text file to the terminal.  
 This task should also work in the same subdirectory.
-```
+
+```yaml
   read-text:
     desc: read the text file from a subdirectory
     dir: temp
@@ -44,7 +45,7 @@ to clean up our workshop. Let's create a task for this.
 This time will work in the same directory where the Taskfile is, so there's  
 no need to specify the directory.
 
-```
+```yaml
   cleanup:
     desc: remove a subdirectory so you can start from scratch
     cmds:

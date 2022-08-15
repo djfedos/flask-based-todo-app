@@ -91,31 +91,32 @@ Now let's make another task with local variables overriding global ones:
 
 Try this task `task query-with-local-vars` and see data on meat sales in Europe.
 
-We can augment this task with CLI arguments like a previous one:
+Let's make a task that will save our query results into a file, and the name  
+of this file will be passed as a CLI argumet:
 
 
 ```yaml
-  query-local-and-cli:
+  query-save-to-file:
       desc: query a dataset with the variables set globally above
       cmds:
       - |-
         cat "10000 Sales Records.csv" \
         | grep "{{.REGION}}" | grep {{.PRODUCT}} \
-        | grep {{.CLI_ARGS}}
+        > {{.CLI_ARGS}}
       vars:
         REGION: Europe
         PRODUCT: Meat
 ```
 
-Call this task with a country name as a CLI argument, for instance:  
-`task query-local-and-cli -- Sweden`
+Call this task with an output file name as a CLI argument, for instance:  
+`task query-save-to-file -- euro-meat.csv`
 
-And it will print out data on sales of meat in Sweden.
-
-Now you know how to use Tasker.
+Now you can open the output file and make sure that it contains the result  
+of our query.
 
 ## That's it!
 
 Thank you for attending this tutorial.  
+Now you know how to use Tasker. Feel free to apply this knowledge.  
 Hope Tasker will appear a useful tool for you and this tutorial helped you  
-to learn its features and feel its human-friendly approach to task
+to learn its features and feel its human-friendly approach to task automation.

@@ -14,7 +14,7 @@ Tasks can make use of envronmental variables. Let's explore this feature.
 Create a new taskfile (`task --init`), open it in a text editor and add a new  
 task to it:
 
-```
+```yaml
 greet-env:
     desc: here we declare an enviroment variable right here in task
     cmds:
@@ -34,7 +34,7 @@ This is how we declare environment variables in tasks. We can declare them on
 the taskfile level as well. Let's do it. Add an `env` block after the `vars`  
 block in the beginning of the file:
 
-```
+```yaml
 version: '3'
 
 vars:
@@ -46,7 +46,7 @@ env:
 
 Add a task that will use this variable:
 
-```
+```yaml
   greet-global-env:
     desc: here we use an enviroment variable declared globally in the taskfile
     cmds:
@@ -60,7 +60,7 @@ Try it: `task greet-global-env`
 Local enviroment variables override the global ones. Add this task to the  
 taskfile:
 
-```
+```yaml
   greet-global-env-override:
     desc: here we override an enviroment variable declared globally above
     cmds:
@@ -94,7 +94,7 @@ is more important than the one defined in the taskfile.
 Let's use an enviroment variable that we definitely have. Add a task to  
 the taskfile:
 
-```
+```yaml
   shell-name:
     desc: In this task we use existing enviroment variable
     cmds:
@@ -112,7 +112,7 @@ the same name.
 
 For example let's add a task:
 
-```
+```yaml
   shell-name-as-var:
     desc: This task will evaluate a var to the env var from system
     cmds:
@@ -127,7 +127,7 @@ enviroment variables and `{{.VAR}}` for other variables.
 
 Look what will happen if we'll declare a variable `{{.SHELL}}` in this task:  
 
-```
+```yaml
   shell-var:
     desc: This task won't evaluate a var to the env var from system
     cmds:
@@ -143,7 +143,7 @@ In this case it behaves like an ordinary variable.
 Let's add a task that uses a local enviroment variable and a global variable  
 with the same name (it will work with a local variable as well):
 
-```
+```yaml
   greet-env-and-var:
     desc: global and enviroment variable do not fight, but avoid name collisions
     cmds:

@@ -14,7 +14,7 @@ let's create an initial taskfile in our working directory: `task --init`.
 
 Open the Taskfile.yaml in a text editor, and you will see:
 
-```
+```yaml
 # https://taskfile.dev
 
 version: '3'
@@ -42,7 +42,7 @@ edit it just once.
 
 Let's write a task that uses the same global variable that we already have:
 
-```
+```yaml
   greet-global:
     desc: run this task to print the global GREETING variable declared above
     cmds:
@@ -57,7 +57,7 @@ Fine.
 
 Meanwhile each task can have its own variables. Let's create an example:
 
-```
+```yaml
   greet-local:
     desc: run this task to print the local GREETING variable declared in task
     vars:

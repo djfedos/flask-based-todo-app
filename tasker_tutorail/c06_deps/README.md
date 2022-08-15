@@ -18,7 +18,7 @@ dependencies shouldn't depend on each other.
 Let's run something in parallel. Create a new taskfile: `task --init`. Open it  
 with a text editor and add three new tasks there:
 
-```
+```yaml
 download:
     desc: download datasets in parallel
     deps:
@@ -43,7 +43,7 @@ Okay, now we have our datasets. But they are packed into zip archives.
 Let's unpack them, also in parallel. Meanwhile we'll get familiar with an  
 alternative syntax for lists in taskfiles. Add tasks to the taskfile:
 
-```
+```yaml
   extract:
     desc: extract datasets in parallel
     deps: [extract1, extract2]
@@ -62,7 +62,7 @@ alternative syntax for lists in taskfiles. Add tasks to the taskfile:
 Note this line:  
 `deps: [extract1, extract2]`  
 It is equivalent to the list of lines starting with dashes like this:
-```
+```yaml
 deps:
   - extract1
   - extract2

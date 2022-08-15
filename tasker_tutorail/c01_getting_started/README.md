@@ -18,7 +18,7 @@ To create a new taskfile in the directory run a command:
 A new file, Taskfile.yaml, will appear. Open this file in any text editor.  
 It content will look like this:
 
-```
+```yaml
 # https://taskfile.dev
 
 version: '3'
@@ -40,7 +40,7 @@ To make your own task, type it below the exisiting one. Mind indentations,
 so that task name shold be indented the same amount as the `default` task  
 name and so on. The result should look like this:
 
-```
+```yaml
 # https://taskfile.dev
 
 version: '3'
@@ -67,7 +67,7 @@ By the way:
 > It's a good practice to add this command to the default task,  
 > so you can call it simply typing `task`.
 
-```
+```yaml
 tasks:
   default:
     cmds:
@@ -81,7 +81,7 @@ practice to know what the task's doing. Also, even if the task is self-explanato
 a description allows Tasker shell completion to work. For simple tasks like this  
 just add a dummy `desc: _` line:
 
-```
+```yaml
   first-task:
     desc: _
     cmds:
@@ -90,7 +90,7 @@ just add a dummy `desc: _` line:
 
 Now let's add more tasks. First of them will be almost exactly the same as before:
 
-```
+```yaml
   get-started:
     desc: _
     cmds:
@@ -100,7 +100,7 @@ Now let's add more tasks. First of them will be almost exactly the same as befor
 The next task is a little bit special: it calls another two tasks.  
 Note that calling tasks goes like this: `- task: taskname` in `cmds` section.
   
-```
+```yaml
   calling-tasks:
     desc: one task can call another tasks, like this one does
     cmds:

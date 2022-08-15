@@ -24,7 +24,7 @@ Don't add anything to this file yet. Make a new file:
 Now let's make a task in our external file. Open `greet.tasks.yaml` in a text  
 editor that you prefer and add the content:
 
-```
+```yaml
 # https://taskfile.dev
 
 version: '3'
@@ -39,7 +39,7 @@ tasks:
 This is a whole valid taskfile that we will include to our main Taskfile.yaml.  
 To do it, let's add to our taskfile (after `version: '3'` line):
 
-```
+```yaml
 includes:
   from-another-file:
     taskfile: greet.tasks.yaml
@@ -69,7 +69,7 @@ Go to this directroy (`cd greet-dir`) and create a new taskfile (`task --init`).
 Open this new Taskfile.yaml with a text editor and overwrite its content with  
 following block:
 
-```
+```yaml
 # https://taskfile.dev
 
 version: '3'
@@ -89,7 +89,7 @@ in the text editor. Add the following line to the `includes:` block:
 
 The result should look like this:
 
-```
+```yaml
 includes:
   from-another-file:
     taskfile: greet.tasks.yaml
@@ -110,7 +110,7 @@ not work. If you add `optional: true` line to the include, it's not the
 case any more. The main taskfile will work just fine even if this particular  
 include is not found. Here's the example:
 
-```
+```yaml
 includes:
   from-another-file:
     taskfile: greet.tasks.yaml

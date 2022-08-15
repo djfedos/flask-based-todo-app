@@ -47,13 +47,13 @@ tasks:
       REGION: Europe
       PRODUCT: Meat
 
-  query-local-and-cli:
-      desc: query a dataset with the local variables and CLI argument
+  query-save-to-file:
+      desc: query a dataset with the local variables and CLI argument for output file
       cmds:
       - |-
         cat "10000 Sales Records.csv" \
         | grep "{{.REGION}}" | grep {{.PRODUCT}} \
-        | grep {{.CLI_ARGS}}
+        > {{.CLI_ARGS}}
       vars:
         REGION: Europe
         PRODUCT: Meat
