@@ -37,7 +37,7 @@ If you'll run a command `task` with no arguments, Tasker will run the `deafult`
 task, hence it's name.
 
 To make your own task, type it below the exisiting one. Mind indentations,  
-so that task name shold be indented the same amount as the `default` task  
+so that task name should be indented the same amount as the `default` task  
 name and so on. The result should look like this:
 
 ```yaml
