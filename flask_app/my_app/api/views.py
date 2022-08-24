@@ -71,11 +71,11 @@ def todos():
     return render_template('todos.html', todos = todos)
 
 
-@tasks.route('/edit_task/<int:id>', methods=['POST', 'GET'])
+@tasks.route('/edit_task/<int:id>', methods=['GET', 'POST'])
 def edit_task(id):
     user = current_user
     form = EditTodoForm()
-    task = Task.query.filter_by(id=id, todo_owner=user.id).first()
+    task = Task.query.filter_by(id=id).first()
 
     if request.method == 'POST':
         if form.validate_on_submit:
@@ -83,7 +83,7 @@ def edit_task(id):
             task.due_date = form.due_date.data
             task.status = form.status.data
             db.session.commit()
-            return redirect('/todos')
+            return ('<a href="/todos">Task list</a>')
 
     elif request.method == 'GET':
         form.task_name.data = task.task_name

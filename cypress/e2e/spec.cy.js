@@ -49,9 +49,4 @@ describe('login, add, edit task', () => {
   })
 })
 
-describe('task edit', () => {
-  it('task edit', () => {
-    
-  })
-})
 
