@@ -30,9 +30,15 @@ tasks:
       - python flask_app/run.py
 
   test-web-app:
-    desc: _
+    desc: simple test if the app is up and running
     cmds:
       - pytest tests/test_flask_based_todo_app.py
+
+  test-web-app-cypress:
+    desc: full-blown cypress webapp test
+    cmds:
+      - docker run -it -v $PWD:/e2e -w /e2e cypress/included:10.6.0
+
 
   install-docker:
     desc: install Docker engine
@@ -52,11 +58,12 @@ tasks:
   test-docker:
     desc: Test if container builds and server an app
     cmds:
-      - task build-docker
-      - task run-docker
+      - task: build-docker
+      - task: run-docker
       - sleep 10
-      - task test-web-app
-      - task clean-up-docker
+      - task: test-web-app
+      - task: test-web-app-cypress
+      - task: clean-up-docker
 
   remove-docker-container:
     desc: _
