@@ -26,6 +26,10 @@ def register():
             return redirect('/login')
 
 
+@tasks.route('/')
+def root():
+    return('<a href="login">Login</a>')
+
 @tasks.route('/login', methods=['POST', 'GET'])
 def login():
     form = LoginForm()
