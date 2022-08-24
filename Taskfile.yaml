@@ -38,7 +38,7 @@ tasks:
     desc: full-blown cypress webapp test
     cmds:
       - docker build -f cypress.Dockerfile -t cypress-web-test . 
-      - docker run -it cypress-web-test
+      - docker run -i cypress-web-test
 
 
   install-docker:
