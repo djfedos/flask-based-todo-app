@@ -135,3 +135,5 @@ dmypy.json
 docs/site
 benchmark_*
 .idea
+flask_app/my_app/mydb.db
+cypress/videos/

@@ -30,9 +30,30 @@ tasks:
       - python flask_app/run.py
 
   test-web-app:
+    desc: simplest test if the app is up and running
+    cmds:
+      - IS_APP_UP=$(curl -sL -w "%{http_code}\\n" "http://localhost:5000" -o /dev/null) && test $IS_APP_UP = 200
+
+  build-cypress-docker:
     desc: _
     cmds:
-      - pytest tests/test_flask_based_todo_app.py
+      - docker build -f cypress.Dockerfile -t cypress-web-test . 
+  
+  test-web-app-cypress-in-docker:
+    desc: full-blown cypress webapp test
+    deps:
+      - build-cypress-docker
+    cmds:
+      - docker run --link flask-todo -e CYPRESS_HOST_URL=http://flask-todo:5000 cypress-web-test
+
+
+  test-web-app-cypress-locally:
+    desc: full-blown cypress webapp test
+    deps:
+      - build-cypress-docker
+    cmds:
+      - docker run cypress-web-test
+  
 
   install-docker:
     desc: install Docker engine
@@ -47,16 +68,17 @@ tasks:
   run-docker:
     desc: _
     cmds:
-      - docker run -d -p 127.0.0.1:5000:5000 --name flask-todo flask-todo-app
-
+      - docker run -d -p 5000:5000 --name flask-todo --hostname flask-todo flask-todo-app
+      
   test-docker:
     desc: Test if container builds and server an app
     cmds:
-      - task build-docker
-      - task run-docker
+      - task: build-docker
+      - task: run-docker
       - sleep 10
-      - task test-web-app
-      - task clean-up-docker
+      - task: test-web-app
+      - task: test-web-app-cypress-in-docker
+      - task: clean-up-docker
 
   remove-docker-container:
     desc: _
@@ -74,6 +96,3 @@ tasks:
     cmds:
      - task remove-docker-container
      - task remove-docker-image
-
-  
-  
