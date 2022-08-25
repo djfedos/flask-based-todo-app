@@ -30,9 +30,9 @@ tasks:
       - python flask_app/run.py
 
   test-web-app:
-    desc: simple test if the app is up and running
+    desc: simplest test if the app is up and running
     cmds:
-      - pytest tests/test_flask_based_todo_app.py
+      - IS_APP_UP=$(curl -sL -w "%{http_code}\\n" "http://localhost:5000" -o /dev/null) && test $IS_APP_UP = 200
 
   build-cypress-docker:
     desc: _
