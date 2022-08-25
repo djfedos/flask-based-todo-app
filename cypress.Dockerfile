@@ -4,5 +4,3 @@ WORKDIR /e2e
 
 COPY cypress.config.js cypress.config.js
 COPY cypress cypress
-
-
