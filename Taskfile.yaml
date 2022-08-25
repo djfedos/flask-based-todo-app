@@ -38,7 +38,7 @@ tasks:
     desc: full-blown cypress webapp test
     cmds:
       - docker build -f cypress.Dockerfile -t cypress-web-test . 
-      - docker run -i cypress-web-test
+      - docker run --link flask-todo cypress-web-test
 
 
   install-docker:
@@ -54,7 +54,7 @@ tasks:
   run-docker:
     desc: _
     cmds:
-      - docker run -d -p 127.0.0.1:5000:5000 --name flask-todo flask-todo-app
+      - docker run -d -p 5000:5000 --name flask-todo --hostname flask-todo flask-todo-app
 
   test-docker:
     desc: Test if container builds and server an app
@@ -82,6 +82,3 @@ tasks:
     cmds:
      - task remove-docker-container
      - task remove-docker-image
-
-  
-  

@@ -1,6 +1,6 @@
 describe('root page', () => {
   it('todo_app_is_up', () => {
-    cy.visit('http://192.168.1.20:5000')
+    cy.visit('http://flask-todo:5000')
 
     cy.get('a').should('contain', 'Login')
 
@@ -12,7 +12,7 @@ describe('root page', () => {
 
 describe('login, add, edit task', () => {
   it('function test', () => {
-    cy.visit('http://192.168.1.20:5000/register')
+    cy.visit('http://flask-todo:5000/register')
     cy.get('input#first_name').type('Tester')
     cy.get('input#last_name').type('Tester')
     cy.get('input#email').type('test@test.test')
@@ -20,7 +20,7 @@ describe('login, add, edit task', () => {
     cy.get('input#submit').click()
     
 
-    cy.visit('http://192.168.1.20:5000/login')
+    cy.visit('http://flask-todo:5000/login')
 
     cy.get('#email').type('test@test.test')
     cy.get('#password').type('t4e2s3t0')
@@ -32,19 +32,11 @@ describe('login, add, edit task', () => {
     cy.get('select').select('Not Started')
     cy.get('#submit').click()
 
-    cy.visit('http://192.168.1.20:5000/edit_task/1')
+    cy.visit('http://flask-todo:5000/edit_task/1')
     cy.get('#task_name').clear().type('Edited task')
     cy.get('#due_date').type('2022-12-24')
     cy.get('select').select('Complete')
     cy.get('#submit').click()
-
-    
-
-
-
-
-
-
 
   })
 })
