@@ -35,12 +35,12 @@ tasks:
       - IS_APP_UP=$(curl -sL -w "%{http_code}\\n" "http://localhost:5000" -o /dev/null) && test $IS_APP_UP = 200
 
   build-cypress-docker:
-    desc: _
+    desc: cypress is a web app testing framework that runs in Docker as well
     cmds:
       - docker build -f cypress.Dockerfile -t cypress-web-test . 
   
   test-web-app-cypress-in-docker:
-    desc: full-blown cypress webapp test
+    desc: full-blown cypress webapp test, app runs in Docker
     deps:
       - build-cypress-docker
     cmds:
@@ -48,7 +48,7 @@ tasks:
 
 
   test-web-app-cypress-locally:
-    desc: full-blown cypress webapp test
+    desc: full-blown cypress webapp test, app runs outside of Docker
     deps:
       - build-cypress-docker
     cmds:
@@ -61,12 +61,12 @@ tasks:
      - task -t taskfiles/setup.os.docker.yaml install-docker
 
   build-docker:
-    desc: _
+    desc: build a todo web app docker
     cmds:
      - docker build -t flask-todo-app .
 
   run-docker:
-    desc: _
+    desc: run a todo web app docker
     cmds:
       - docker run -d -p 5000:5000 --name flask-todo --hostname flask-todo flask-todo-app
       
@@ -81,13 +81,13 @@ tasks:
       - task: clean-up-docker
 
   remove-docker-container:
-    desc: _
+    desc: remove web app container
     cmds:
       - docker stop flask-todo
       - docker container rm flask-todo  
   
   remove-docker-image:
-    desc: _
+    desc: remove web app Docker image
     cmds:
       - docker image rm -f flask-todo-app
       
