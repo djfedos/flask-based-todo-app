@@ -1,4 +1,4 @@
-# Tasker Quick Start Tutorial
+# Tasker Tutorial -- Task Directory
 
 *[Task Directory](https://taskfile.dev/usage/#task-directory) in official documentation*
 
