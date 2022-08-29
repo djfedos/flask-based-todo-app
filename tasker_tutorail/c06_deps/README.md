@@ -1,4 +1,4 @@
-# Tasker Quick Start Tutorial
+# Tasker Quick Start Tutorial. Dependencies - Run Tasks in Parallel
 
 *[Dependencies](https://taskfile.dev/usage/#task-dependencies) 
 in official documentation*
