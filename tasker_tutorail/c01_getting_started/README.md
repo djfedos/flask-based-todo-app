@@ -1,4 +1,4 @@
-# Tasker Quick Start Tutorial
+# Tasker Tutorial -- Getting started
 
 *[Getting Started](https://taskfile.dev/usage/#getting-started) 
 and [How to Call One Task from Another](https://taskfile.dev/usage/#calling-another-task) in official documentation*
