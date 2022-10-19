@@ -74,7 +74,7 @@ tasks:
       - task: build-docker
       - task: run-docker
       - sleep 10
-      - task: test-web-app
+#      - task: test-web-app
       - task: test-web-app-cypress-in-docker
       - task: clean-up-docker
 
