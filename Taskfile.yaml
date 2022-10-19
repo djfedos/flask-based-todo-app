@@ -42,7 +42,8 @@ tasks:
     deps:
       - build-cypress-docker
     cmds:
-      - docker run --link flask-todo -e CYPRESS_HOST_URL=http://flask-todo:5000 cypress-web-test
+      - docker run -e CYPRESS_HOST_URL=http://flask-tsodo:5000 cypress-web-test
+#      - docker run --link flask-tsodo -e CYPRESS_HOST_URL=http://flask-tsodo:5000 cypress-web-test
 
 
   test-web-app-cypress-locally:
@@ -50,6 +51,7 @@ tasks:
     deps:
       - build-cypress-docker
     cmds:
+      - docker network connect testing-net cypress-web-test
       - docker run cypress-web-test
   
 
@@ -61,12 +63,14 @@ tasks:
   build-docker:
     desc: build a todo web app docker
     cmds:
+     - docker network create testing-net
      - docker build -t flask-todo-app .
 
   run-docker:
     desc: run a todo web app docker
     cmds:
       - docker run -d -p 5000:5000 --name flask-todo --hostname flask-todo flask-todo-app
+      - docker network connect testing-net flask-todo
       
   test-docker:
     desc: Test if container builds and server an app
@@ -74,7 +78,7 @@ tasks:
       - task: build-docker
       - task: run-docker
       - sleep 10
-#      - task: test-web-app
+      - task: test-web-app
       - task: test-web-app-cypress-in-docker
       - task: clean-up-docker
 
