@@ -18,11 +18,9 @@ tasks:
     silent: true
 
   resolve-deps:
-    desc: Install Docker, Pytest and Requests to build app container and run tests
+    desc: Install Docker to build app container and run tests
     cmds:
       - task install-docker
-      - python -m pip install --upgrade pip
-      - pip install pytest requests
 
   run-server:
     desc: fire it up!
