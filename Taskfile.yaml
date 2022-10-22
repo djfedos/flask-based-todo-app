@@ -22,6 +22,11 @@ tasks:
     cmds:
       - task install-docker
 
+  up-docker-net:
+    desc: create a docker network to test  dockerized app
+    cmds:
+      - docker network create testnet
+
   run-server:
     desc: fire it up!
     cmds:
@@ -42,16 +47,13 @@ tasks:
     deps:
       - build-cypress-docker
     cmds:
-      - docker run -e CYPRESS_HOST_URL=http://flask-tsodo:5000 cypress-web-test
-#      - docker run --link flask-tsodo -e CYPRESS_HOST_URL=http://flask-tsodo:5000 cypress-web-test
-
+      - docker run -e CYPRESS_HOST_URL=http://flask-todo:5000 --network testnet cypress-web-test
 
   test-web-app-cypress-locally:
     desc: full-blown cypress webapp test, app runs outside of Docker
     deps:
       - build-cypress-docker
     cmds:
-      - docker network connect testing-net cypress-web-test
       - docker run cypress-web-test
   
 
@@ -63,19 +65,18 @@ tasks:
   build-docker:
     desc: build a todo web app docker
     cmds:
-     - docker network create testing-net
      - docker build -t flask-todo-app .
 
   run-docker:
     desc: run a todo web app docker
     cmds:
-      - docker run -d -p 5000:5000 --name flask-todo --hostname flask-todo flask-todo-app
-      - docker network connect testing-net flask-todo
+      - docker run -itd -p 5000:5000 --name flask-todo --network testnet flask-todo-app
       
   test-docker:
     desc: Test if container builds and server an app
     cmds:
       - task: build-docker
+      - task: up-docker-net
       - task: run-docker
       - sleep 10
       - task: test-web-app
@@ -92,9 +93,15 @@ tasks:
     desc: remove web app Docker image
     cmds:
       - docker image rm -f flask-todo-app
-      
+
+  remove-docker-net:
+    desc: remove test docker network
+    cmds:
+      - docker network rm testnet
+
   clean-up-docker:
     desc: remove docker container and image, for instance after the test
     cmds:
-     - task remove-docker-container
-     - task remove-docker-image
+     - task: remove-docker-container
+     - task: remove-docker-image
+     - task: remove-docker-net
