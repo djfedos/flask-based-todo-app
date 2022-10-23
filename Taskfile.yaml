@@ -51,11 +51,10 @@ tasks:
 
   test-web-app-cypress-locally:
     desc: full-blown cypress webapp test, app runs outside of Docker
-    deps:
-      - build-cypress-docker
     cmds:
-      - docker run cypress-web-test
-  
+      - task: build-cypress-docker
+      - task run-server & docker run -it cypress-web-test
+      - pkill -f run.py
 
   install-docker:
     desc: install Docker engine
